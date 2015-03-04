@@ -6,8 +6,10 @@
 
 package org.leanpoker.player;
 
+import com.wcs.poker.gamestate.Card;
 import com.wcs.poker.gamestate.GameState;
 import com.wcs.poker.gamestate.Player;
+import java.util.List;
 
 /**
  *
@@ -19,4 +21,7 @@ public class CurrentState {
         return gameState.getPlayers().get(gameState.getInAction());
     }
     
+    public List<Card> getCurrentCards(GameState gameState) {
+        return getCurrentPlayer(gameState).getHoleCards();
+    }
 }
