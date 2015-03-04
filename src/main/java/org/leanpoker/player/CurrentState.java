@@ -24,4 +24,9 @@ public class CurrentState {
     public List<Card> getCurrentCards(GameState gameState) {
         return getCurrentPlayer(gameState).getHoleCards();
     }
+    
+    public Integer getBigBlind(GameState gameState)
+    {
+        return gameState.getSmallBlind()*2;
+    }
 }
