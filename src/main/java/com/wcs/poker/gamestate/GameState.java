@@ -35,7 +35,11 @@ public class GameState {
     private List<Card> communityCards = new ArrayList<Card>();
     
     public Player getCurrentPlayer() {
-        return this.getPlayers().get(this.getInAction());
+        return players.get(inAction);
+    }
+    
+    public List<Card> getCurrentCards() {
+        return getCurrentPlayer().getHoleCards();
     }
 
     /**
