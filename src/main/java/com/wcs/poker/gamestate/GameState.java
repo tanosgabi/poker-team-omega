@@ -33,6 +33,10 @@ public class GameState {
     @SerializedName("community_cards")
     @Expose
     private List<Card> communityCards = new ArrayList<Card>();
+    
+    public Player getCurrentPlayer() {
+        return this.getPlayers().get(this.getInAction());
+    }
 
     /**
      * 
