@@ -41,6 +41,11 @@ public class GameState {
     public List<Card> getCurrentCards() {
         return getCurrentPlayer().getHoleCards();
     }
+    
+    public Integer getBigBlind()
+    {
+        return smallBlind*2;
+    }
 
     /**
      * 
