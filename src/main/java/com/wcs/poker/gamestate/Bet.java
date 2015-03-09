@@ -13,4 +13,8 @@ public class Bet {
     public Integer getCall(GameState gameState) {
         return gameState.getCurrentBuyIn() - gameState.getPlayers().get(gameState.getInAction()).getBet();
     }
+    
+    public Integer getMinimumRise(GameState gameState) {
+        return getCall(gameState) + gameState.getMinimumRaise();
+    }
 }
