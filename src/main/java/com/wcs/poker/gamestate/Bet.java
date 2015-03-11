@@ -11,7 +11,7 @@ package com.wcs.poker.gamestate;
  */
 public class Bet {
     public Integer getCall(GameState gameState) {
-        return gameState.getCurrentBuyIn() - gameState.getPlayers().get(gameState.getInAction()).getBet();
+        return gameState.getCurrentBuyIn() - gameState.getCurrentPlayer().getBet();
     }
     
     public Integer getMinimumRise(GameState gameState) {
