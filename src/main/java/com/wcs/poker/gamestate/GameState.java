@@ -46,6 +46,14 @@ public class GameState {
     {
         return smallBlind*2;
     }
+    
+    public Integer getCall() {
+        return currentBuyIn - getCurrentPlayer().getBet();
+    }
+    
+    public Integer getMinimumBet() {
+        return getCall() + minimumRaise;
+    }
 
     /**
      * 
