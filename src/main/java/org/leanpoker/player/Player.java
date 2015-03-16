@@ -2,21 +2,24 @@ package org.leanpoker.player;
 
 import com.wcs.poker.gamestate.Card;
 import com.wcs.poker.gamestate.GameState;
+import java.util.List;
 
 public class Player {
 
     static final String VERSION = "Default Java folding player";
 
     public static int betRequest(GameState gameState) {
-        Card card1 = gameState.getCurrentPlayer().getHoleCards().get(0);
-        Card card2 = gameState.getCurrentPlayer().getHoleCards().get(1);
-        if (card1.getRank().equals(card2.getRank())) {
-            if (card1.getRank().matches("[1-9]")) {
-                return gameState.getCall();
-            }
-            else {
-                return gameState.getMinimumBet();
-            }
+        List<Card> cards = gameState.getCurrentCards();
+        Card card1 = cards.get(0);
+        Card card2 = cards.get(1);
+        
+        if ((card1.getRank().equals(card2.getRank()) && card1.getRank().matches("A|K|Q|J|[7-9]"))
+                || (card1.getRank().equals("A") && card1.getRank().equals("Q"))
+                || (card1.getRank().equals("Q") && card1.getRank().equals("A"))) {
+            return gameState.getMinimumBet();
+        }
+        else if (card1.getRank().equals(card2.getRank()) && card1.getRank().matches("[2-6]")) {
+            return gameState.getCall();
         }
         
         return 0;
