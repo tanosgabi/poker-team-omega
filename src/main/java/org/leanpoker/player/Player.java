@@ -14,8 +14,8 @@ public class Player {
         Card card2 = cards.get(1);
         
         if ((card1.getRank().equals(card2.getRank()) && card1.getRank().matches("A|K|Q|J|[7-9]"))
-                || (card1.getRank().equals("A") && card1.getRank().equals("Q"))
-                || (card1.getRank().equals("Q") && card1.getRank().equals("A"))) {
+                || (card1.getRank().equals("A") && card2.getRank().equals("Q"))
+                || (card1.getRank().equals("Q") && card2.getRank().equals("A"))) {
             return gameState.getMinimumBet();
         }
         else if (card1.getRank().equals(card2.getRank()) && card1.getRank().matches("[2-6]")) {
