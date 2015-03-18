@@ -13,23 +13,14 @@ import com.wcs.poker.gamestate.Card;
  */
 public class CombinationChecker {
     public boolean isBigPair(Card card1, Card card2) {
-        if (card1.isRankEqual(card2) && card1.rankMatches("A|K|Q|J|[7-9]")) {
-            return true;
-        }
-        return false;
+        return card1.isRankEqual(card2) && card1.rankMatches("A|K|Q|J|[7-9]");
     }
     
     public boolean isAceAndQueen(Card card1, Card card2) {
-        if ((card1.isRank("A") && card2.isRank("Q")) || (card1.isRank("Q") && card2.isRank("A"))) {
-            return true;
-        }
-        return false;
+        return (card1.isRank("A") && card2.isRank("Q")) || (card1.isRank("Q") && card2.isRank("A"));
     }
     
     public boolean isSmallPair(Card card1, Card card2) {
-        if (card1.isRankEqual(card2) && card1.rankMatches("[2-6]")) {
-            return true;
-        }
-        return false;
+        return card1.isRankEqual(card2) && card1.rankMatches("[2-6]");
     }
 }
