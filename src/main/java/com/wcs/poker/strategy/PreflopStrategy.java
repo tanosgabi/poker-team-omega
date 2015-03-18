@@ -18,13 +18,12 @@ public class PreflopStrategy {
         List<Card> cards = gameState.getCurrentCards();
         Card card1 = cards.get(0);
         Card card2 = cards.get(1);
+        CombinationChecker checker = new CombinationChecker();
         
-        if ((card1.isRankEqual(card2) && card1.rankMatches("A|K|Q|J|[7-9]"))
-                || (card1.isRank("A") && card2.isRank("Q"))
-                || (card1.isRank("Q") && card2.isRank("A"))) {
+        if (checker.isBigPair(card1, card2) || checker.isAceAndQueen(card1, card2)) {
             return gameState.getMinimumBet();
         }
-        else if (card1.getRank().equals(card2.getRank()) && card1.rankMatches("[2-6]")) {
+        else if (checker.isSmallPair(card1, card2)) {
             return gameState.getCall();
         }
         
