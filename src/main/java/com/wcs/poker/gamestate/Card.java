@@ -11,6 +11,27 @@ public class Card {
     private String rank;
     @Expose
     private String suit;
+    
+    public boolean isRankEqual(Card other) {
+        if (other.getRank().equals(this.rank)) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean isRank(String rank) {
+        if (rank.equals(this.rank)) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean rankMatches(String regexp) {
+        if (rank.matches(regexp)) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * 
