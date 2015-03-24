@@ -14,6 +14,14 @@ public class Card {
     private String rank;
     @Expose
     private String suit;
+
+    public Card() {
+    }
+ 
+    public Card(String rank, String suit) {
+        this.rank = rank;
+        this.suit = suit;
+    }
     
     public boolean isSuitEqual(Card other){
         if (other.getSuit().equals(this.suit)) {
