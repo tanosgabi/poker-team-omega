@@ -17,7 +17,7 @@ import java.util.List;
 public class CombinationChecker {
     
     //a legjobb eset
-    private HandRank handRank=HandRank.highCard;
+    private HandRank handRank=null;
     
     //adott szamjegyű lapból hány darab van
     private int[] cardPiece;
@@ -91,14 +91,8 @@ public class CombinationChecker {
     private void countFlush()
     {
         flushes=0;
-        boolean seged;
-        for (int i = 0; i < cardSuit.length-5; i++) {
-            seged= true;
-            for (int j = 0; j < 5; j++) {
-                if(cardSuit[i+j]==0)
-                    seged=false;
-            }
-            if(seged)flushes++;
+        for (int d : cardSuit) {
+            if(d>=5)flushes++;
         }
     }
     
