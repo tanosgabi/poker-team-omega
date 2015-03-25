@@ -103,23 +103,23 @@ public class CombinationChecker {
         this.countStraight();
         this.countFlush();
         if(flushes>0 && straights>0)
-            handRank=HandRank.straightFlush;
+            handRank=HandRank.STRAIGHTFLUSH;
         else if(pokers>0)
-            handRank=HandRank.poker;
+            handRank=HandRank.POKER;
         else if(drills>0 & pairs>0)
-            handRank=HandRank.fullHouse;
+            handRank=HandRank.FULLHOUSE;
         else if(flushes>0)
-            handRank=HandRank.flush;
+            handRank=HandRank.FLUSH;
         else if(straights>0)
-            handRank=HandRank.straight;
+            handRank=HandRank.STRAIGHT;
         else if(drills>0)
-            handRank=HandRank.drill;
+            handRank=HandRank.DRILL;
         else if(pairs>1)
-            handRank=HandRank.twoPair;
+            handRank=HandRank.TWOPAIRS;
         else if(pairs>0)
-            handRank=HandRank.pair;
+            handRank=HandRank.PAIR;
         else
-            handRank=HandRank.highCard;
+            handRank=HandRank.HIGHCARD;
     }
     
     

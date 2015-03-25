@@ -10,18 +10,11 @@ public class Player {
     static final String VERSION = "Default Java folding player";
 
     public static int betRequest(GameState gameState) {
-        PreflopStrategy preflopStrategy = new PreflopStrategy();
-        FlopStategy flopStategy= new FlopStategy();
-        TurnStrategy turnStrategy= new TurnStrategy();
-        RiverStrategy riverStrategy= new RiverStrategy();
-        
-        if(gameState.getCommunityCards().size()==0)
-            return preflopStrategy.calculateBet(gameState);
-        if(gameState.getCommunityCards().size()==3)
-            return flopStategy.calculateBet(gameState);
-        if(gameState.getCommunityCards().size()==4)
-            return turnStrategy.calculateBet(gameState);
-        return riverStrategy.calculateBet(gameState);
+        int phase = gameState.getCommunityCards().size();
+        CombinationChecker checker = new CombinationChecker();
+        StrategyFactory factory = new StrategyFactory();
+        Strategy strategy = factory.createStrategy(gameState, phase, checker);
+        return strategy.calculateBet();
     }
 
     public static void showdown(GameState gameState) {

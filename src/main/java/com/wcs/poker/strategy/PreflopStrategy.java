@@ -13,12 +13,16 @@ import java.util.List;
  *
  * @author Timi
  */
-public class PreflopStrategy {
-    public Integer calculateBet(GameState gameState) {
-        List<Card> cards = gameState.getCurrentCards();
+public class PreflopStrategy extends Strategy {
+
+    public PreflopStrategy(GameState gameState, CombinationChecker checker) {
+        super(gameState, checker);
+    }
+    
+    @Override
+    public Integer calculateBet() {
         Card card1 = cards.get(0);
         Card card2 = cards.get(1);
-        CombinationChecker checker = new CombinationChecker();
         
         if (checker.isBigPair(card1, card2) || checker.isAceAndQueen(card1, card2)) {
             return gameState.getMinimumBet();
@@ -29,4 +33,20 @@ public class PreflopStrategy {
         
         return 0;
     }
+    
+//    public Integer calculateBet(GameState gameState) {
+//        List<Card> cards = gameState.getCurrentCards();
+//        Card card1 = cards.get(0);
+//        Card card2 = cards.get(1);
+//        CombinationChecker checker = new CombinationChecker();
+//        
+//        if (checker.isBigPair(card1, card2) || checker.isAceAndQueen(card1, card2)) {
+//            return gameState.getMinimumBet();
+//        }
+//        else if (checker.isSmallPair(card1, card2)) {
+//            return gameState.getCall();
+//        }
+//        
+//        return 0;
+//    }
 }

@@ -13,9 +13,9 @@ import java.util.List;
  *
  * @author Gábor
  */
-public class RiverStrategy extends Strategy {
+public class FlopStrategy extends Strategy {
 
-    public RiverStrategy(GameState gameState, CombinationChecker checker) {
+    public FlopStrategy(GameState gameState, CombinationChecker checker) {
         super(gameState, checker);
     }
     

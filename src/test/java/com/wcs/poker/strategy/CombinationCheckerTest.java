@@ -112,7 +112,7 @@ public class CombinationCheckerTest {
         cards.add(new Card("5", "clubs"));
         cards.add(new Card("6", "clubs"));
         checker.countAndSet(cards);
-        expResult = HandRank.highCard;
+        expResult = HandRank.HIGHCARD;
         result = checker.getHandRank();
         assertEquals(expResult, result);
     }
@@ -122,7 +122,7 @@ public class CombinationCheckerTest {
         cards.add(new Card("6", "clubs"));
         cards.add(new Card("6", "spades"));
         checker.countAndSet(cards);
-        expResult = HandRank.pair;
+        expResult = HandRank.PAIR;
         result = checker.getHandRank();
         assertEquals(expResult, result);
     }
@@ -133,7 +133,7 @@ public class CombinationCheckerTest {
         cards.add(new Card("5", "spades"));
         cards.add(new Card("6", "spades"));
         checker.countAndSet(cards);
-        expResult = HandRank.twoPair;
+        expResult = HandRank.TWOPAIRS;
         result = checker.getHandRank();
         assertEquals(expResult, result);
     }
@@ -144,7 +144,7 @@ public class CombinationCheckerTest {
         cards.add(new Card("5", "spades"));
         cards.add(new Card("5", "hearts"));
         checker.countAndSet(cards);
-        expResult = HandRank.drill;
+        expResult = HandRank.DRILL;
         result = checker.getHandRank();
         assertEquals(expResult, result);
     }
@@ -156,7 +156,7 @@ public class CombinationCheckerTest {
         cards.add(new Card("8", "hearts"));
         cards.add(new Card("9", "hearts"));
         checker.countAndSet(cards);
-        expResult = HandRank.straight;
+        expResult = HandRank.STRAIGHT;
         result = checker.getHandRank();
         assertEquals(expResult, result);
     }
@@ -169,7 +169,7 @@ public class CombinationCheckerTest {
         cards.add(new Card("8", "spades"));
         cards.add(new Card("10", "spades"));
         checker.countAndSet(cards);
-        expResult = HandRank.flush;
+        expResult = HandRank.FLUSH;
         result = checker.getHandRank();
         assertEquals(expResult, result);
     }
@@ -181,7 +181,7 @@ public class CombinationCheckerTest {
         cards.add(new Card("10", "spades"));
         cards.add(new Card("10", "hearts"));
         checker.countAndSet(cards);
-        expResult = HandRank.fullHouse;
+        expResult = HandRank.FULLHOUSE;
         result = checker.getHandRank();
         assertEquals(expResult, result);
     }
@@ -193,7 +193,7 @@ public class CombinationCheckerTest {
         cards.add(new Card("5", "diamonds"));
         cards.add(new Card("10", "hearts"));
         checker.countAndSet(cards);
-        expResult = HandRank.poker;
+        expResult = HandRank.POKER;
         result = checker.getHandRank();
         assertEquals(expResult, result);
     }
@@ -205,7 +205,7 @@ public class CombinationCheckerTest {
         cards.add(new Card("8", "diamonds"));
         cards.add(new Card("9", "diamonds"));
         checker.countAndSet(cards);
-        expResult = HandRank.straightFlush;
+        expResult = HandRank.STRAIGHTFLUSH;
         result = checker.getHandRank();
         assertEquals(expResult, result);
     }

@@ -10,14 +10,14 @@ package com.wcs.poker.strategy;
  * @author Gábor
  */
 public enum HandRank {
-    highCard,
-    pair,
-    twoPair,
-    drill,
-    straight,
-    flush,
-    fullHouse,
-    poker,
-    straightFlush,
-    royalFlush
+    HIGHCARD,
+    PAIR,
+    TWOPAIRS,
+    DRILL,
+    STRAIGHT,
+    FLUSH,
+    FULLHOUSE,
+    POKER,
+    STRAIGHTFLUSH,
+    ROYALFLUSH
 }
