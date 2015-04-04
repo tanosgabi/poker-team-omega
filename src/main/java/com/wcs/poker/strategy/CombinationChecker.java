@@ -6,8 +6,6 @@
 package com.wcs.poker.strategy;
 
 import com.wcs.poker.gamestate.Card;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**

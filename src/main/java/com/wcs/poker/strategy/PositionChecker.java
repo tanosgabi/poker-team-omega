@@ -25,9 +25,20 @@ public class PositionChecker {
             return Position.LATE;
         }
         
-        if (playersIndex == dealer + 1 - ((dealer + 1 ) / size) * size ||
-                playersIndex == dealer + 2 - ((dealer + 2 ) / size) * size) {
+        if (playersIndex == (dealer + 1) % size || playersIndex == (dealer + 2) % size) {
             return Position.BLIND;
+        }
+        
+        if (size > 7) {
+            if (playersIndex == (dealer + 3) % size) {
+                return Position.EARLY;
+            }
+            
+            if (playersIndex == (dealer - 1) % size) {
+                return Position.LATE;
+            }
+            
+            return Position.MIDDLE;
         }
         
         return null;

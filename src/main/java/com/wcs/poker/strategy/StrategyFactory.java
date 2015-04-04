@@ -13,7 +13,7 @@ import com.wcs.poker.gamestate.GameState;
  */
 public class StrategyFactory {
     
-    public Strategy createStrategy(GameState gameState, int phase, CombinationChecker checker) {
+    public AbstractStrategy createStrategy(GameState gameState, int phase, CombinationChecker checker) {
         switch (phase) {
             case 0: return new PreflopStrategy(gameState, checker);
             case 3: return new FlopStrategy(gameState, checker);

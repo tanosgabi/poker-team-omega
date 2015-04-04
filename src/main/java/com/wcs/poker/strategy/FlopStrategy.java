@@ -5,15 +5,13 @@
  */
 package com.wcs.poker.strategy;
 
-import com.wcs.poker.gamestate.Card;
 import com.wcs.poker.gamestate.GameState;
-import java.util.List;
 
 /**
  *
  * @author Gábor
  */
-public class FlopStrategy extends Strategy {
+public class FlopStrategy extends AbstractStrategy {
 
     public FlopStrategy(GameState gameState, CombinationChecker checker) {
         super(gameState, checker);

@@ -1,9 +1,7 @@
 package org.leanpoker.player;
 
-import com.wcs.poker.gamestate.Card;
 import com.wcs.poker.gamestate.GameState;
 import com.wcs.poker.strategy.*;
-import java.util.List;
 
 public class Player {
 
@@ -13,7 +11,7 @@ public class Player {
         int phase = gameState.getCommunityCards().size();
         CombinationChecker checker = new CombinationChecker();
         StrategyFactory factory = new StrategyFactory();
-        Strategy strategy = factory.createStrategy(gameState, phase, checker);
+        AbstractStrategy strategy = factory.createStrategy(gameState, phase, checker);
         return strategy.calculateBet();
     }
 
