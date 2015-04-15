@@ -104,7 +104,7 @@ public class CombinationChecker {
             handRank=HandRank.STRAIGHTFLUSH;
         else if(pokers>0)
             handRank=HandRank.POKER;
-        else if(drills>0 & pairs>0)
+        else if(drills>0 & pairs>0|| drills>1)
             handRank=HandRank.FULLHOUSE;
         else if(flushes>0)
             handRank=HandRank.FLUSH;

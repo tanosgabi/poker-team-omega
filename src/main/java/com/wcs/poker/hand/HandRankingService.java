@@ -10,7 +10,10 @@ import java.util.List;
 public class HandRankingService {
 
     public Hand evaulate(List<Card> loadCards) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(loadCards.size()>=8 ||loadCards.size()<=4)
+            throw new IllegalArgumentException("");
+        return null;
     }
+    
     
 }
