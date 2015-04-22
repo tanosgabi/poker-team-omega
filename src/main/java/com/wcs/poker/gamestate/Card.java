@@ -3,12 +3,14 @@ package com.wcs.poker.gamestate;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
+import java.util.List;
+import java.util.Objects;
 
 @Generated("org.jsonschema2pojo")
 public class Card implements Comparable<Card> {
 
-    private static final String[] ranks={"2","3","4","5","6","7","8","9","10","J","Q","K","A"};
-    private static final String[] suits={"clubs","spades","hearts","diamonds"};
+    public static final String[] ranks={"2","3","4","5","6","7","8","9","10","J","Q","K","A"};
+    public static final String[] suits={"clubs","spades","hearts","diamonds"};
     
     @Expose
     private String rank;
@@ -128,6 +130,41 @@ public class Card implements Comparable<Card> {
             default: return 0;
         }
     }
-    
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Card other = (Card) obj;
+        if (!this.isRank(other.rank)) {
+            return false;
+        }
+        if (!this.isSuit(other.suit)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
+    public static boolean SameCardList(List<Card> card1,List<Card> card2)
+    {
+        if(card1.size()!=card2.size())
+            return false;
+        boolean is;
+        for (Card cards1 : card1) {
+            is=false;
+            for (Card cards2 : card2) {
+                if(cards2.isRankEqual(cards1) && cards2.isSuitEqual(cards1))
+                    is=true;
+            }
+            if(!is)
+                return false;
+        }
+        return true;
+    }
 }
