@@ -40,7 +40,7 @@ public class HandRankingServiceTest {
         handRankingService.evaulate(Collections.nCopies(8, (Card) null));
     }
 
-    @Ignore
+    
     @Test
     public void testEvaulateRoyalFlushHand() throws Exception {
         Hand hand = handRankingService.evaulate(loadCards("royalFlushHandTestDataSet.json"));
