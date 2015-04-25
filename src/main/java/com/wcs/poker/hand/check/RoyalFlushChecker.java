@@ -7,6 +7,7 @@
 package com.wcs.poker.hand.check;
 
 import com.wcs.poker.gamestate.Card;
+import com.wcs.poker.hand.HandRank;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -47,6 +48,11 @@ public class RoyalFlushChecker implements HandChecker {
     @Override
     public List<Card> getResult() {
         return handCards;
+    }
+
+    @Override
+    public HandRank getRank() {
+        return HandRank.ROYAL_FLUSH;
     }
     
     private void checkRoyalFlushRank(List<Card> cards) {

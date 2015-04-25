@@ -7,6 +7,7 @@
 package com.wcs.poker.hand.check;
 
 import com.wcs.poker.gamestate.Card;
+import com.wcs.poker.hand.HandRank;
 import java.util.List;
 
 /**
@@ -16,4 +17,5 @@ import java.util.List;
 public interface HandChecker {
     boolean check(List<Card> cards);
     List<Card> getResult();
+    HandRank getRank();
 }
