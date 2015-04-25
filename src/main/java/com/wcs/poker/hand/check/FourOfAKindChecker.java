@@ -19,7 +19,7 @@ import java.util.Map;
  * @author Timi
  */
 public class FourOfAKindChecker implements HandChecker {
-    
+
     private List<Card> handCards = new LinkedList<>();
 
     @Override
@@ -44,8 +44,8 @@ public class FourOfAKindChecker implements HandChecker {
                 break;
             }
         }
-        
-        return (!handCards.isEmpty());
+
+        return (handCards.size() == 5);
     }
 
     @Override
@@ -59,15 +59,17 @@ public class FourOfAKindChecker implements HandChecker {
     }
 
     private void addFifthCard(List<Card> cards) {
-        List<Card> temp = new ArrayList<>();
-        
-        for (Card card : cards) {
-            if (!handCards.contains(card)) {
-                temp.add(card);
+        if (handCards.size() == 4) {
+            List<Card> temp = new ArrayList<>();
+
+            for (Card card : cards) {
+                if (!handCards.contains(card)) {
+                    temp.add(card);
+                }
             }
+            Collections.sort(temp);
+            handCards.add(temp.get(0));
         }
-        Collections.sort(temp);
-        handCards.add(temp.get(0));
     }
-    
+
 }

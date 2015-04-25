@@ -101,10 +101,10 @@ public class Card implements Comparable<Card> {
     @Override
     public int compareTo(Card o) {
         if ("A".equals(this.rank)) {
-            return 10;
+            return -1;
         }
         if ("K".equals(this.rank) && !"A".equals(o.getRank())) {
-            return 10;
+            return -1;
         }
         return -this.rank.compareTo(o.getRank());
     }

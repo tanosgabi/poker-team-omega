@@ -3,22 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.wcs.poker.hand.check;
 
 import com.wcs.poker.gamestate.Card;
 import com.wcs.poker.hand.HandRank;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 /**
  *
- * @author poker08
+ * @author Timi
  */
-public class RoyalFlushChecker implements HandChecker {
+public class FlushChecker implements HandChecker {
     
     private List<Card> handCards = new LinkedList<>();
 
@@ -37,7 +36,7 @@ public class RoyalFlushChecker implements HandChecker {
 
         for (Map.Entry<String, List<Card>> entry : suitCounterMap.entrySet()) {
             if (entry.getValue().size() >= 5) {
-                checkRoyalFlushRank(entry.getValue());
+                addFiveBest(entry.getValue());
                 break;
             }
         }
@@ -52,25 +51,13 @@ public class RoyalFlushChecker implements HandChecker {
 
     @Override
     public HandRank getRank() {
-        return HandRank.ROYAL_FLUSH;
+        return HandRank.FLUSH;
     }
-    
-    private void checkRoyalFlushRank(List<Card> cards) {
-        String[] ranks = {"A", "K", "Q", "J", "10"};
-        
-        for (String rank : ranks) {
-            Iterator<Card> iterator = cards.iterator();
-            while (iterator.hasNext()) {
-                Card next = iterator.next();
-                if (rank.equals(next.getRank())) {
-                    handCards.add(next);
-                    iterator.remove();
-                }
-            }
-        }
-        
-        if (handCards.size() != 5) {
-            handCards.clear();
+
+    private void addFiveBest(List<Card> cards) {
+        Collections.sort(cards);
+        for (int i = 0; i < 5; i++) {
+            handCards.add(cards.get(i));
         }
     }
     
