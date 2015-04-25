@@ -18,8 +18,8 @@ import java.util.Map;
  *
  * @author Timi
  */
-public class FourOfAKindChecker implements HandChecker {
-
+public class ThreeOfAKindChecker implements HandChecker {
+    
     private List<Card> handCards = new LinkedList<>();
 
     @Override
@@ -36,9 +36,9 @@ public class FourOfAKindChecker implements HandChecker {
         }
 
         for (Map.Entry<String, List<Card>> entry : rankCounterMap.entrySet()) {
-            if (entry.getValue().size() >= 4) {
-                addFourBest(entry.getValue());
-                addFifthCard(cards);
+            if (entry.getValue().size() >= 3) {
+                addThreeBest(entry.getValue());
+                addTwoOtherCards(cards);
                 break;
             }
         }
@@ -53,18 +53,18 @@ public class FourOfAKindChecker implements HandChecker {
 
     @Override
     public HandRank getRank() {
-        return HandRank.FOUR_OF_A_KIND;
+        return HandRank.THREE_OF_A_KIND;
     }
 
-    private void addFourBest(List<Card> cards) {
+    private void addThreeBest(List<Card> cards) {
         Collections.sort(cards);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             handCards.add(cards.get(i));
         }
     }
 
-    private void addFifthCard(List<Card> cards) {
-        if (handCards.size() == 4) {
+    private void addTwoOtherCards(List<Card> cards) {
+        if (handCards.size() == 3) {
             List<Card> temp = new ArrayList<>();
 
             for (Card card : cards) {
@@ -74,7 +74,8 @@ public class FourOfAKindChecker implements HandChecker {
             }
             Collections.sort(temp);
             handCards.add(temp.get(0));
+            handCards.add(temp.get(1));
         }
     }
-
+    
 }

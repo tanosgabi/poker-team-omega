@@ -22,7 +22,7 @@ public class HandCheckerProvider {
         // full house
         checkers.add(new FlushChecker());
         // straight
-        // three of a kind
+        checkers.add(new ThreeOfAKindChecker());
         // two pairs
         // pair
     }
