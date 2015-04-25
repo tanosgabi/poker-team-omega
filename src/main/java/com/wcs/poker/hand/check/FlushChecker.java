@@ -23,6 +23,7 @@ public class FlushChecker implements HandChecker {
 
     @Override
     public boolean check(List<Card> cards) {
+        Collections.sort(cards);
         Map<String, List<Card>> suitCounterMap = new HashMap();
         for (Card card : cards) {
             final String suit = card.getSuit();
