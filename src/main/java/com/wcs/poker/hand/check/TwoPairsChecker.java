@@ -7,7 +7,6 @@ package com.wcs.poker.hand.check;
 
 import com.wcs.poker.gamestate.Card;
 import com.wcs.poker.hand.HandRank;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -18,12 +17,13 @@ import java.util.Map;
  *
  * @author Timi
  */
-public class ThreeOfAKindChecker implements HandChecker {
-    
+public class TwoPairsChecker implements HandChecker {
+
     private List<Card> handCards = new LinkedList<>();
 
     @Override
     public boolean check(List<Card> cards) {
+        Collections.sort(cards);
         Map<String, List<Card>> rankCounterMap = new HashMap();
         for (Card card : cards) {
             final String rank = card.getRank();
@@ -35,12 +35,17 @@ public class ThreeOfAKindChecker implements HandChecker {
             rankCards.add(card);
         }
 
+        int countPairs = 0;
+
         for (Map.Entry<String, List<Card>> entry : rankCounterMap.entrySet()) {
-            if (entry.getValue().size() >= 3) {
-                addThree(entry.getValue());
-                addTwoOtherCards(cards);
-                break;
+            if (countPairs <= 2 && entry.getValue().size() >= 2) {
+                addPair(entry.getValue());
+                countPairs++;
             }
+        }
+
+        if (handCards.size() == 4) {
+            addFifthCard(cards);
         }
 
         return (handCards.size() == 5);
@@ -53,28 +58,21 @@ public class ThreeOfAKindChecker implements HandChecker {
 
     @Override
     public HandRank getRank() {
-        return HandRank.THREE_OF_A_KIND;
+        return HandRank.TWO_PAIRS;
     }
 
-    private void addThree(List<Card> cards) {
-        for (int i = 0; i < 3; i++) {
+    private void addPair(List<Card> cards) {
+        for (int i = 0; i < 2; i++) {
             handCards.add(cards.get(i));
         }
     }
 
-    private void addTwoOtherCards(List<Card> cards) {
-        if (handCards.size() == 3) {
-            List<Card> temp = new ArrayList<>();
-
-            for (Card card : cards) {
-                if (!handCards.contains(card)) {
-                    temp.add(card);
-                }
+    private void addFifthCard(List<Card> cards) {
+        for (Card card : cards) {
+            if (!handCards.contains(card)) {
+                handCards.add(card);
             }
-            Collections.sort(temp);
-            handCards.add(temp.get(0));
-            handCards.add(temp.get(1));
         }
     }
-    
+
 }

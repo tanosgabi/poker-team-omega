@@ -37,7 +37,7 @@ public class FourOfAKindChecker implements HandChecker {
 
         for (Map.Entry<String, List<Card>> entry : rankCounterMap.entrySet()) {
             if (entry.getValue().size() >= 4) {
-                addFourBest(entry.getValue());
+                addFour(entry.getValue());
                 addFifthCard(cards);
                 break;
             }
@@ -56,8 +56,7 @@ public class FourOfAKindChecker implements HandChecker {
         return HandRank.FOUR_OF_A_KIND;
     }
 
-    private void addFourBest(List<Card> cards) {
-        Collections.sort(cards);
+    private void addFour(List<Card> cards) {
         for (int i = 0; i < 4; i++) {
             handCards.add(cards.get(i));
         }
