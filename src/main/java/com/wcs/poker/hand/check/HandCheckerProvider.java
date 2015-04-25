@@ -24,7 +24,7 @@ public class HandCheckerProvider {
         // straight
         checkers.add(new ThreeOfAKindChecker());
         checkers.add(new TwoPairsChecker());
-        // pair
+        checkers.add(new PairChecker());
     }
 
     public List<HandChecker> getCheckers() {
