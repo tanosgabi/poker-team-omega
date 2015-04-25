@@ -17,6 +17,14 @@ public class HandCheckerProvider {
 
     public HandCheckerProvider() {
         checkers.add(new RoyalFlushChecker());
+        // straight flush
+        checkers.add(new FourOfAKindChecker());
+        // full house
+        // flush
+        // straight
+        // three of a kind
+        // two pairs
+        // pair
     }
 
     public List<HandChecker> getCheckers() {

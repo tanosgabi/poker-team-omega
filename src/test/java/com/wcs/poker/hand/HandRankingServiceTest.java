@@ -58,7 +58,7 @@ public class HandRankingServiceTest {
         assertThat(hand.getCards(), Is.is((Collection) loadCards("straightFlush.json")));
     }
     
-    @Ignore
+    
     @Test
     public void testEvaulateFourOfAKind() throws Exception {
         Hand hand = handRankingService.evaulate(loadCards("fourOfAKindTestDataSet.json"));
