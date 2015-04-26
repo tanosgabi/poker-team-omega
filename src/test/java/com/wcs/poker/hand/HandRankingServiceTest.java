@@ -76,7 +76,13 @@ public class HandRankingServiceTest {
         assertThat(hand.getRank(), Is.is(HandRank.FULL_HOUSE));
         assertThat(hand.getCards(), Is.is((Collection) loadCards("fullHouseHand.json")));
     }
-    
+    @Test
+    public void testEvaulateFullHouse2() throws Exception {
+        Hand hand = handRankingService.evaulate(loadCards("fullHouseTestDataSet2.json"));
+        
+        assertThat(hand.getRank(), Is.is(HandRank.FULL_HOUSE));
+        assertTrue(Card.SameCardList((List<Card>) hand.getCards(),loadCards("fullHouseHand2.json")));
+    }
     
     @Test
     public void testEvaulateFlush() throws Exception {
