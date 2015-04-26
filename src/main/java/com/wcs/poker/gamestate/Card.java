@@ -90,7 +90,7 @@ public class Card implements Comparable<Card> {
         this.suit = suit;
     }
 
-    public static String[] getSequence() {
+    public static String[] getAllRanks() {
         return ranks;
     }
 

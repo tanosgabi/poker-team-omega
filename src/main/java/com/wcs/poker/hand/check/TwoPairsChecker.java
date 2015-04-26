@@ -8,47 +8,33 @@ package com.wcs.poker.hand.check;
 import com.wcs.poker.gamestate.Card;
 import com.wcs.poker.hand.HandRank;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
- * @author Timi
+ * @author Gábor
  */
-public class TwoPairsChecker implements HandChecker {
-
+public class TwoPairsChecker implements HandChecker{
+    
+    private static final HandRank HAND_RANK=HandRank.TWO_PAIRS;
+    private List<List<Card>> ranksCounter= new LinkedList<>();
     private List<Card> handCards = new LinkedList<>();
 
     @Override
     public boolean check(List<Card> cards) {
-        Collections.sort(cards);
-        Map<String, List<Card>> rankCounterMap = new HashMap();
-        for (Card card : cards) {
-            final String rank = card.getRank();
-            List<Card> rankCards = rankCounterMap.get(rank);
-            if (rankCards == null) {
-                rankCards = new LinkedList<>();
-                rankCounterMap.put(rank, rankCards);
-            }
-            rankCards.add(card);
+        RanksMap(cards);
+        SortByMaxRank();
+        for (List<Card> ranksCounter1 : ranksCounter) {
+            handCards.addAll(ranksCounter1);
         }
-
-        int countPairs = 0;
-
-        for (Map.Entry<String, List<Card>> entry : rankCounterMap.entrySet()) {
-            if (countPairs <= 2 && entry.getValue().size() >= 2) {
-                addPair(entry.getValue());
-                countPairs++;
-            }
+        if(ranksCounter.get(0).size()==2 && ranksCounter.get(1).size()==2){
+            handCards=handCards.subList(0, 5);
+        }else{
+            handCards.clear();
         }
-
-        if (handCards.size() == 4) {
-            addFifthCard(cards);
-        }
-
-        return (handCards.size() == 5);
+        return (!handCards.isEmpty());
     }
 
     @Override
@@ -56,23 +42,36 @@ public class TwoPairsChecker implements HandChecker {
         return handCards;
     }
 
+    private void RanksMap(List<Card> cards) {
+        for (Card card : cards) {
+            final String rank = card.getRank();
+            List<Card> rankCards = null;
+            for (List<Card> ranksCounter1 : ranksCounter) {
+                if(card.isRankEqual(ranksCounter1.get(0)))rankCards=ranksCounter1;
+            }
+            if (rankCards == null) {
+                rankCards = new LinkedList<>();
+                ranksCounter.add(rankCards);
+            }
+            rankCards.add(card);
+        }
+    }
+
+    private void SortByMaxRank() {
+        Collections.sort(ranksCounter,new Comparator<List<Card>>(){
+            @Override
+            public int compare(List<Card> o1, List<Card> o2) {
+                if(o1.size()==o2.size()){
+                    return new CardComporatorDecending().compare(o1.get(0), o2.get(0));
+                }
+                return o2.size()-o1.size();
+            }        
+        });
+    }
+
     @Override
     public HandRank getRank() {
-        return HandRank.TWO_PAIRS;
-    }
-
-    private void addPair(List<Card> cards) {
-        for (int i = 0; i < 2; i++) {
-            handCards.add(cards.get(i));
-        }
-    }
-
-    private void addFifthCard(List<Card> cards) {
-        for (Card card : cards) {
-            if (!handCards.contains(card)) {
-                handCards.add(card);
-            }
-        }
+        return HAND_RANK;
     }
 
 }

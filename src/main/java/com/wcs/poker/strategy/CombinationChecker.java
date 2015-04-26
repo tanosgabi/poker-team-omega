@@ -46,11 +46,11 @@ public class CombinationChecker {
     
     private void cardCount(List<Card> cards)
     {
-        cardPiece= new int[Card.getSequence().length];
+        cardPiece= new int[Card.getAllRanks().length];
         cardSuit= new int[Card.getSuits().length];
         for (Card card : cards) {
-            for (int i=0;i<Card.getSequence().length;i++) {
-                if(card.isRank(Card.getSequence()[i]))
+            for (int i=0;i<Card.getAllRanks().length;i++) {
+                if(card.isRank(Card.getAllRanks()[i]))
                     cardPiece[i]++;
             }
             for (int i=0;i<Card.getSuits().length;i++) {
