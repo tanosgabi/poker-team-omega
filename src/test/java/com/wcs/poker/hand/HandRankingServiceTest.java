@@ -12,6 +12,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.hamcrest.core.Is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -103,13 +104,12 @@ public class HandRankingServiceTest {
         assertThat(hand.getCards(), Is.is((Collection) loadCards("threeOfAKindHand.json")));
     }
     
-    @Ignore
     @Test
     public void testEvaulateTwoPairs() throws Exception {
         Hand hand = handRankingService.evaulate(loadCards("twoPairsTestDataSet.json"));
         
         assertThat(hand.getRank(), Is.is(HandRank.TWO_PAIRS));
-        assertThat(hand.getCards(), Is.is((Collection) loadCards("twoPairsHand.json")));
+        assertTrue(Card.SameCardList((List<Card>) hand.getCards(),loadCards("twoPairsHand.json")));
     }
     
     
@@ -137,4 +137,5 @@ public class HandRankingServiceTest {
         Type cardListType = new TypeToken<List<Card>>(){}.getType();
         return new Gson().fromJson(json, cardListType);
     }
+
 }
