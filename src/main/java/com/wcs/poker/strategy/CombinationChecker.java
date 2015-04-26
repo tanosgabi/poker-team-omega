@@ -47,14 +47,35 @@ public class CombinationChecker {
         otherCardsSet(cards);
         for (Card otherCard : otherCards) {
             cards.add(otherCard);
-            if(winnerHandRank.contains(new HandRankingService().evaulate(cards))){
+            if(winnerHandRank.contains(new HandRankingService().evaulate(cards).getRank())){
                 odds++;
             }
             cards.remove(otherCard);
         }
-        return odds/46;
+        return odds/(otherCards.size());
     }
 
+    public double flopOdds(List<Card> cards)
+    {
+        double odds=0;
+        otherCardsSet(cards);
+        for (int i = 0; i < otherCards.size()-1; i++) {
+            Card get = otherCards.get(i);
+            cards.add(get);
+            for (int j = i+1; j < otherCards.size(); j++) {
+                Card get1 = otherCards.get(j);
+                cards.add(get1);
+                if(winnerHandRank.contains(new HandRankingService().evaulate(cards).getRank())){
+                    odds++;
+                }
+                cards.remove(get1);
+            }
+            cards.remove(get);
+        }
+        return odds/((otherCards.size()*(otherCards.size()-1))/2);
+    }
+    
+    
     private void otherCardsSet(List<Card> cards) {
         for (String allRank : Card.getAllRanks()) {
             for (String suit : Card.getSuits()) {

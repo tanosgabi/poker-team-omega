@@ -1,0 +1,22 @@
+[
+    {
+        "rank": "K",
+        "suit": "hearts"
+    },
+    {
+        "rank": "10",
+        "suit": "spades"
+    },
+    {
+        "rank": "7",
+        "suit": "spades"
+    },
+    {
+        "rank": "5",
+        "suit": "clubs"
+    },
+    {
+        "rank": "2",
+        "suit": "spades"
+    }
+]
