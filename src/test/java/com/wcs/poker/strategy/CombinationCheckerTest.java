@@ -24,10 +24,7 @@ public class CombinationCheckerTest {
     CombinationChecker checker;
     Card card1;
     Card card2;
-    List<Card> cards;
-    HandRank expResult;
-    HandRank result;
-    
+
     public CombinationCheckerTest() {
     }
     
@@ -44,7 +41,6 @@ public class CombinationCheckerTest {
         checker = new CombinationChecker();
         card1 = new Card();
         card2 = new Card();
-        cards=new ArrayList<>();
     }
     
     @After
@@ -84,129 +80,4 @@ public class CombinationCheckerTest {
         assertFalse(checker.isSmallPair(card1, card2));
     }
 
-    /**
-     * Test of countAndSet method, of class CombinationChecker.
-     */
-    /*@Test
-    public void testCountAndSet() {
-        System.out.println("countAndSet");
-        List<Card> cards = null;
-        CombinationChecker instance = new CombinationChecker();
-        instance.countAndSet(cards);
-        
-    }*/
-
-    /**
-     * Test of getHandRank method, of class CombinationChecker.
-     */
-    @Test
-    public void testGetHandRankIsNull() {
-        System.out.println("getHandRank");
-        expResult = null;
-        result = checker.getHandRank();
-        assertEquals(expResult, result);        
-    }
-    
-    @Test
-    public void testGetHandRankIsHighCard() {
-        cards.add(new Card("5", "clubs"));
-        cards.add(new Card("6", "clubs"));
-        checker.countAndSet(cards);
-        expResult = HandRank.HIGHCARD;
-        result = checker.getHandRank();
-        assertEquals(expResult, result);
-    }
-    @Test
-    public void testGetHandRankIsPair() {
-        cards.add(new Card("5", "clubs"));
-        cards.add(new Card("6", "clubs"));
-        cards.add(new Card("6", "spades"));
-        checker.countAndSet(cards);
-        expResult = HandRank.PAIR;
-        result = checker.getHandRank();
-        assertEquals(expResult, result);
-    }
-    @Test
-    public void testGetHandRankIsTwoPair() {
-        cards.add(new Card("5", "clubs"));
-        cards.add(new Card("6", "clubs"));
-        cards.add(new Card("5", "spades"));
-        cards.add(new Card("6", "spades"));
-        checker.countAndSet(cards);
-        expResult = HandRank.TWOPAIRS;
-        result = checker.getHandRank();
-        assertEquals(expResult, result);
-    }
-    @Test
-    public void testGetHandRankIsDrill() {
-        cards.add(new Card("5", "clubs"));
-        cards.add(new Card("6", "clubs"));
-        cards.add(new Card("5", "spades"));
-        cards.add(new Card("5", "hearts"));
-        checker.countAndSet(cards);
-        expResult = HandRank.DRILL;
-        result = checker.getHandRank();
-        assertEquals(expResult, result);
-    }
-    @Test
-    public void testGetHandRankIsStraight() {
-        cards.add(new Card("5", "clubs"));
-        cards.add(new Card("6", "clubs"));
-        cards.add(new Card("7", "spades"));
-        cards.add(new Card("8", "hearts"));
-        cards.add(new Card("9", "hearts"));
-        checker.countAndSet(cards);
-        expResult = HandRank.STRAIGHT;
-        result = checker.getHandRank();
-        assertEquals(expResult, result);
-    }
-    
-    @Test
-    public void testGetHandRankIsFlush() {
-        cards.add(new Card("5", "spades"));
-        cards.add(new Card("6", "spades"));
-        cards.add(new Card("2", "spades"));
-        cards.add(new Card("8", "spades"));
-        cards.add(new Card("10", "spades"));
-        checker.countAndSet(cards);
-        expResult = HandRank.FLUSH;
-        result = checker.getHandRank();
-        assertEquals(expResult, result);
-    }
-    @Test
-    public void testGetHandRankIsFullHouse() {
-        cards.add(new Card("5", "clubs"));
-        cards.add(new Card("5", "spades"));
-        cards.add(new Card("5", "hearts"));
-        cards.add(new Card("10", "spades"));
-        cards.add(new Card("10", "hearts"));
-        checker.countAndSet(cards);
-        expResult = HandRank.FULLHOUSE;
-        result = checker.getHandRank();
-        assertEquals(expResult, result);
-    }
-    @Test
-    public void testGetHandRankIsPoker() {
-        cards.add(new Card("5", "clubs"));
-        cards.add(new Card("5", "spades"));
-        cards.add(new Card("5", "hearts"));
-        cards.add(new Card("5", "diamonds"));
-        cards.add(new Card("10", "hearts"));
-        checker.countAndSet(cards);
-        expResult = HandRank.POKER;
-        result = checker.getHandRank();
-        assertEquals(expResult, result);
-    }
-    @Test
-    public void testGetHandRankIsStraightFlush() {
-        cards.add(new Card("5", "diamonds"));
-        cards.add(new Card("6", "diamonds"));
-        cards.add(new Card("7", "diamonds"));
-        cards.add(new Card("8", "diamonds"));
-        cards.add(new Card("9", "diamonds"));
-        checker.countAndSet(cards);
-        expResult = HandRank.STRAIGHTFLUSH;
-        result = checker.getHandRank();
-        assertEquals(expResult, result);
-    }
 }
