@@ -56,7 +56,7 @@ public class FlushChecker implements HandChecker {
     }
 
     private void addFiveBest(List<Card> cards) {
-        Collections.sort(cards);
+        Collections.sort(cards,new CardComporatorDecending());
         for (int i = 0; i < 5; i++) {
             handCards.add(cards.get(i));
         }
