@@ -90,50 +90,50 @@ public class CombinationCheckerTest {
     /**
      * Test of turnOdds method, of class CombinationChecker.
      */
-    @Test
-    public void testTurnOddsWeCantWin() throws IOException {
-        double expResult = 0.0;
-        double result = checker.turnOdds(loadCards("turnWeCantWin.json"));
-        //System.out.println(result);
-        assertEquals(expResult, result, 0.0);
-    }
-
-    @Test
-    public void testTurnOddsOneCardAndWeHaveFull() throws IOException {
-        double expResult = 4.0/46;
-        double result = checker.turnOdds(loadCards("turnWeHaveCanFull.json"));
-        //System.out.println("weHaveFull: "+result);
-        assertEquals(expResult, result, 0.0001);
-    }
-    @Test
-    public void testTurnOddsWeWin() throws IOException {
-        double expResult = 1.0;
-        double result = checker.turnOdds(loadCards("turnWeWin.json"));
-        //System.out.println("weWin: "+result);
-        assertEquals(expResult, result, 0.0);
-    }
-    /**
-     * Test of flopOdds method, of class CombinationChecker.
-     */
-    @Test
-    public void testFlopOddsWeCantWin() throws IOException {
-        double expResult = 0.0;
-        double result = checker.flopOdds(loadCards("flopWeCantWin.json"));
-        assertEquals(expResult, result, 0.0);
-    }
-    @Test
-    public void testFlopOddsWeWin() throws IOException {
-        double expResult = 1.0;
-        double result = checker.flopOdds(loadCards("flopWeWin.json"));
-        assertEquals(expResult, result, 0.0);
-    }
-    @Test
-    public void testFlopOddsWeCanWin() throws IOException {
-        double expResult = 5.0*9/(47*46/2);
-        double result = checker.flopOdds(loadCards("flopWeCanWin.json"));
-        System.out.println("weCanWin: "+result+"  "+expResult);
-        assertEquals(expResult, result, 0.0);
-    }
+//    @Test
+//    public void testTurnOddsWeCantWin() throws IOException {
+//        double expResult = 0.0;
+//        double result = checker.turnOdds(loadCards("turnWeCantWin.json"));
+//        //System.out.println(result);
+//        assertEquals(expResult, result, 0.0);
+//    }
+//
+//    @Test
+//    public void testTurnOddsOneCardAndWeHaveFull() throws IOException {
+//        double expResult = 4.0/46;
+//        double result = checker.turnOdds(loadCards("turnWeHaveCanFull.json"));
+//        //System.out.println("weHaveFull: "+result);
+//        assertEquals(expResult, result, 0.0001);
+//    }
+//    @Test
+//    public void testTurnOddsWeWin() throws IOException {
+//        double expResult = 1.0;
+//        double result = checker.turnOdds(loadCards("turnWeWin.json"));
+//        //System.out.println("weWin: "+result);
+//        assertEquals(expResult, result, 0.0);
+//    }
+//    /**
+//     * Test of flopOdds method, of class CombinationChecker.
+//     */
+//    @Test
+//    public void testFlopOddsWeCantWin() throws IOException {
+//        double expResult = 0.0;
+//        double result = checker.flopOdds(loadCards("flopWeCantWin.json"));
+//        assertEquals(expResult, result, 0.0);
+//    }
+//    @Test
+//    public void testFlopOddsWeWin() throws IOException {
+//        double expResult = 1.0;
+//        double result = checker.flopOdds(loadCards("flopWeWin.json"));
+//        assertEquals(expResult, result, 0.0);
+//    }
+//    @Test
+//    public void testFlopOddsWeCanWin() throws IOException {
+//        double expResult = 5.0*9/(47*46/2);
+//        double result = checker.flopOdds(loadCards("flopWeCanWin.json"));
+//        System.out.println("weCanWin: "+result+"  "+expResult);
+//        assertEquals(expResult, result, 0.0);
+//    }
     
     private List<Card> loadCards(String name) throws IOException {
         InputStream resource = getClass().getResourceAsStream(name);

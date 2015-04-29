@@ -17,15 +17,19 @@ import java.util.List;
  */
 public class CombinationChecker {
     List<Card> otherCards=new LinkedList<>();
-    List<HandRank> winnerHandRank=new LinkedList<>();
+    List<HandRank> listHandRank=new LinkedList<>();
     
     public CombinationChecker() {
-        winnerHandRank.add(HandRank.ROYAL_FLUSH);
-        winnerHandRank.add(HandRank.STRAIGHT_FLUSH);
-        winnerHandRank.add(HandRank.FOUR_OF_A_KIND);
-        winnerHandRank.add(HandRank.FULL_HOUSE);
-        winnerHandRank.add(HandRank.FLUSH);
-        winnerHandRank.add(HandRank.STRAIGHT);
+        listHandRank.add(HandRank.ROYAL_FLUSH);
+        listHandRank.add(HandRank.STRAIGHT_FLUSH);
+        listHandRank.add(HandRank.FOUR_OF_A_KIND);
+        listHandRank.add(HandRank.FULL_HOUSE);
+        listHandRank.add(HandRank.FLUSH);
+        listHandRank.add(HandRank.STRAIGHT);
+        listHandRank.add(HandRank.THREE_OF_A_KIND);
+        listHandRank.add(HandRank.TWO_PAIRS);
+        listHandRank.add(HandRank.PAIR);
+        listHandRank.add(HandRank.HIGH_CARD);
     }
     
     
@@ -41,31 +45,32 @@ public class CombinationChecker {
         return card1.isRankEqual(card2) && card1.rankMatches("[2-6]");
     }
     
-    public double turnOdds(List<Card> cards)
-    {
-        double odds=0;
-        otherCardsSet(cards);
-        for (Card otherCard : otherCards) {
-            cards.add(otherCard);
-            if(winnerHandRank.contains(new HandRankingService().evaulate(cards).getRank())){
-                odds++;
-            }
-            cards.remove(otherCard);
-        }
-        return odds/(otherCards.size());
-    }
+//    public double turnOdds(List<Card> cards,HandRank myrank)
+//    {
+//        double odds=0;
+//        otherCardsSet(cards);
+//        for (Card otherCard : otherCards) {
+//            cards.add(otherCard);
+//            if(winnerHandRank.contains(new HandRankingService().evaulate(cards).getRank())){
+//                odds++;
+//            }
+//            cards.remove(otherCard);
+//        }
+//        return odds/(otherCards.size());
+//    }
 
-    public double flopOdds(List<Card> cards)
+    public double odds(List<Card> cards,HandRank myRank,List<Card> myCard)
     {
+        int myIndex=listHandRank.indexOf(myRank);
         double odds=0;
-        otherCardsSet(cards);
+        otherCardsSet(cards,myCard);
         for (int i = 0; i < otherCards.size()-1; i++) {
             Card get = otherCards.get(i);
             cards.add(get);
             for (int j = i+1; j < otherCards.size(); j++) {
                 Card get1 = otherCards.get(j);
                 cards.add(get1);
-                if(winnerHandRank.contains(new HandRankingService().evaulate(cards).getRank())){
+                if(listHandRank.indexOf(new HandRankingService().evaulate(cards).getRank())<=myIndex){
                     odds++;
                 }
                 cards.remove(get1);
@@ -76,16 +81,18 @@ public class CombinationChecker {
     }
     
     
-    private void otherCardsSet(List<Card> cards) {
+    private void otherCardsSet(List<Card> cards1,List<Card> cards2) {
         for (String allRank : Card.getAllRanks()) {
             for (String suit : Card.getSuits()) {
                 otherCards.add(new Card(allRank, suit));
             }
         }
-        for (Card card : cards) {
+        cards1.addAll(cards2);
+        for (Card card : cards1) {
             if(otherCards.contains(card)){
                 otherCards.remove(card);
             }
         }
+        cards1.removeAll(cards2);
     }
 }

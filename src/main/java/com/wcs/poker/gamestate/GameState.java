@@ -55,6 +55,9 @@ public class GameState {
         return getCall() + minimumRaise;
     }
 
+    public Integer getAllIn(){
+        return getCurrentPlayer().getStack()-getCurrentPlayer().getBet();
+    }
     /**
      * 
      * @return
